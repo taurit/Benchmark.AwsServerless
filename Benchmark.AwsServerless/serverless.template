@@ -43,7 +43,7 @@
       "Properties": {
         "Runtime": "dotnet6",
         "CodeUri": ".",
-        "MemorySize": 256,
+        "MemorySize": 128,
         "Timeout": 30,
         "Policies": [
           "AWSLambdaBasicExecutionRole"
@@ -101,7 +101,7 @@
       "Properties": {
         "Runtime": "dotnet6",
         "CodeUri": ".",
-        "MemorySize": 256,
+        "MemorySize": 1024,
         "Timeout": 30,
         "Policies": [
           "AWSLambdaBasicExecutionRole"
@@ -130,7 +130,7 @@
       "Properties": {
         "Runtime": "dotnet6",
         "CodeUri": ".",
-        "MemorySize": 256,
+        "MemorySize": 2048,
         "Timeout": 30,
         "Policies": [
           "AWSLambdaBasicExecutionRole"
@@ -159,7 +159,7 @@
       "Properties": {
         "Runtime": "dotnet6",
         "CodeUri": ".",
-        "MemorySize": 256,
+        "MemorySize": 4096,
         "Timeout": 30,
         "Policies": [
           "AWSLambdaBasicExecutionRole"
@@ -188,7 +188,7 @@
       "Properties": {
         "Runtime": "dotnet6",
         "CodeUri": ".",
-        "MemorySize": 256,
+        "MemorySize": 8192,
         "Timeout": 30,
         "Policies": [
           "AWSLambdaBasicExecutionRole"
@@ -217,7 +217,10 @@
       "Properties": {
         "Runtime": "dotnet6",
         "CodeUri": ".",
-        "MemorySize": 256,
+        "MemorySize": 128,
+        "Architectures": [
+          "arm64"
+        ],
         "Timeout": 30,
         "Policies": [
           "AWSLambdaBasicExecutionRole"
@@ -247,6 +250,9 @@
         "Runtime": "dotnet6",
         "CodeUri": ".",
         "MemorySize": 256,
+        "Architectures": [
+          "arm64"
+        ],
         "Timeout": 30,
         "Policies": [
           "AWSLambdaBasicExecutionRole"
@@ -275,7 +281,10 @@
       "Properties": {
         "Runtime": "dotnet6",
         "CodeUri": ".",
-        "MemorySize": 256,
+        "MemorySize": 1024,
+        "Architectures": [
+          "arm64"
+        ],
         "Timeout": 30,
         "Policies": [
           "AWSLambdaBasicExecutionRole"
@@ -304,7 +313,10 @@
       "Properties": {
         "Runtime": "dotnet6",
         "CodeUri": ".",
-        "MemorySize": 256,
+        "MemorySize": 2048,
+        "Architectures": [
+          "arm64"
+        ],
         "Timeout": 30,
         "Policies": [
           "AWSLambdaBasicExecutionRole"
@@ -333,7 +345,10 @@
       "Properties": {
         "Runtime": "dotnet6",
         "CodeUri": ".",
-        "MemorySize": 256,
+        "MemorySize": 4096,
+        "Architectures": [
+          "arm64"
+        ],
         "Timeout": 30,
         "Policies": [
           "AWSLambdaBasicExecutionRole"
@@ -362,7 +377,10 @@
       "Properties": {
         "Runtime": "dotnet6",
         "CodeUri": ".",
-        "MemorySize": 256,
+        "MemorySize": 8192,
+        "Architectures": [
+          "arm64"
+        ],
         "Timeout": 30,
         "Policies": [
           "AWSLambdaBasicExecutionRole"
