@@ -1,94 +1,82 @@
 using Amazon.Lambda.Core;
 using Amazon.Lambda.Annotations;
 using Amazon.Lambda.Annotations.APIGateway;
+using System.Text.Json;
+using System.Runtime.InteropServices;
 
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
 namespace Benchmark.AwsServerless;
 
-/// <summary>
-/// A collection of sample Lambda functions that provide a REST api for doing simple math calculations. 
-/// </summary>
+record ResponseModel(Architecture Architecture, string DotNetVersion);
+
 public class Functions
 {
-    /// <summary>
-    /// Default constructor.
-    /// </summary>
-    public Functions()
-    {
-    }
-
-    /// <summary>
-    /// Root route that provides information about the other requests that can be made.
-    /// </summary>
-    /// <returns>API descriptions.</returns>
     [LambdaFunction()]
     [HttpApi(LambdaHttpMethod.Get, "/")]
-    public string Default()
+    public IHttpResult Default() => PrepareResponse();
+
+    // X86_64:
+
+    [LambdaFunction()]
+    [HttpApi(LambdaHttpMethod.Get, "/x86_64/128")]
+    public IHttpResult x86_64_128() => PrepareResponse();
+
+    [LambdaFunction()]
+    [HttpApi(LambdaHttpMethod.Get, "/x86_64/256")]
+    public IHttpResult x86_64_256() => PrepareResponse();
+
+    [LambdaFunction()]
+    [HttpApi(LambdaHttpMethod.Get, "/x86_64/1024")]
+    public IHttpResult x86_64_1024() => PrepareResponse();
+
+    [LambdaFunction()]
+    [HttpApi(LambdaHttpMethod.Get, "/x86_64/2048")]
+    public IHttpResult x86_64_2048() => PrepareResponse();
+
+    [LambdaFunction()]
+    [HttpApi(LambdaHttpMethod.Get, "/x86_64/4096")]
+    public IHttpResult x86_64_4096() => PrepareResponse();
+
+    [LambdaFunction()]
+    [HttpApi(LambdaHttpMethod.Get, "/x86_64/8192")]
+    public IHttpResult x86_64_8192() => PrepareResponse();
+
+    // ARM64:
+
+    [LambdaFunction()]
+    [HttpApi(LambdaHttpMethod.Get, "/Arm64/128")]
+    public IHttpResult Arm64_128() => PrepareResponse();
+
+    [LambdaFunction()]
+    [HttpApi(LambdaHttpMethod.Get, "/Arm64/256")]
+    public IHttpResult Arm64_256() => PrepareResponse();
+
+    [LambdaFunction()]
+    [HttpApi(LambdaHttpMethod.Get, "/Arm64/1024")]
+    public IHttpResult Arm64_1024() => PrepareResponse();
+
+    [LambdaFunction()]
+    [HttpApi(LambdaHttpMethod.Get, "/Arm64/2048")]
+    public IHttpResult Arm64_2048() => PrepareResponse();
+
+    [LambdaFunction()]
+    [HttpApi(LambdaHttpMethod.Get, "/Arm64/4096")]
+    public IHttpResult Arm64_4096() => PrepareResponse();
+
+    [LambdaFunction()]
+    [HttpApi(LambdaHttpMethod.Get, "/Arm64/8192")]
+    public IHttpResult Arm64_8192() => PrepareResponse();
+
+    private static IHttpResult PrepareResponse()
     {
-        var docs = @"Lambda Calculator Home:
-You can make the following requests to invoke other Lambda functions perform calculator operations:
-/add/{x}/{y}
-/subtract/{x}/{y}
-/multiply/{x}/{y}
-/divide/{x}/{y}
-";
-        return docs;
+        var architecture = RuntimeInformation.ProcessArchitecture;
+        var dotnetVersion = Environment.Version.ToString();
+
+        var responseModel = new ResponseModel(architecture, dotnetVersion);
+        string jsonString = JsonSerializer.Serialize(responseModel);
+
+        return HttpResults.Ok(jsonString);
     }
 
-    /// <summary>
-    /// Perform x + y
-    /// </summary>
-    /// <param name="x"></param>
-    /// <param name="y"></param>
-    /// <returns>Sum of x and y.</returns>
-    [LambdaFunction()]
-    [HttpApi(LambdaHttpMethod.Get, "/add/{x}/{y}")]
-    public int Add(int x, int y, ILambdaContext context)
-    {
-        context.Logger.LogInformation($"{x} plus {y} is {x + y}");
-        return x + y;
-    }
-
-    /// <summary>
-    /// Perform x - y.
-    /// </summary>
-    /// <param name="x"></param>
-    /// <param name="y"></param>
-    /// <returns>x subtract y</returns>
-    [LambdaFunction()]
-    [HttpApi(LambdaHttpMethod.Get, "/subtract/{x}/{y}")]
-    public int Subtract(int x, int y, ILambdaContext context)
-    {
-        context.Logger.LogInformation($"{x} subtract {y} is {x - y}");
-        return x - y;
-    }
-
-    /// <summary>
-    /// Perform x * y.
-    /// </summary>
-    /// <param name="x"></param>
-    /// <param name="y"></param>
-    /// <returns>x multiply y</returns>
-    [LambdaFunction()]
-    [HttpApi(LambdaHttpMethod.Get, "/multiply/{x}/{y}")]
-    public int Multiply(int x, int y, ILambdaContext context)
-    {
-        context.Logger.LogInformation($"{x} multiply {y} is {x * y}");
-        return x * y;
-    }
-
-    /// <summary>
-    /// Perform x / y.
-    /// </summary>
-    /// <param name="x"></param>
-    /// <param name="y"></param>
-    /// <returns>x divide y</returns>
-    [LambdaFunction()]
-    [HttpApi(LambdaHttpMethod.Get, "/divide/{x}/{y}")]
-    public int Divide(int x, int y, ILambdaContext context)
-    {
-        context.Logger.LogInformation($"{x} divide {y} is {x / y}");
-        return x / y;
-    }
 }
