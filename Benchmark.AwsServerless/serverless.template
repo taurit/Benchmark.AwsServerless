@@ -90,6 +90,35 @@
         }
       }
     },
+    "BenchmarkAwsServerlessFunctionsx8664512Generated": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootGet"
+        ]
+      },
+      "Properties": {
+        "Runtime": "dotnet6",
+        "CodeUri": ".",
+        "MemorySize": 512,
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "PackageType": "Zip",
+        "Handler": "Benchmark.AwsServerless::Benchmark.AwsServerless.Functions_x86_64_512_Generated::x86_64_512",
+        "Events": {
+          "RootGet": {
+            "Type": "HttpApi",
+            "Properties": {
+              "Path": "/x86_64/512",
+              "Method": "GET"
+            }
+          }
+        }
+      }
+    },
     "BenchmarkAwsServerlessFunctionsx86641024Generated": {
       "Type": "AWS::Serverless::Function",
       "Metadata": {
@@ -264,6 +293,38 @@
             "Type": "HttpApi",
             "Properties": {
               "Path": "/Arm64/256",
+              "Method": "GET"
+            }
+          }
+        }
+      }
+    },
+    "BenchmarkAwsServerlessFunctionsArm64512Generated": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootGet"
+        ]
+      },
+      "Properties": {
+        "Runtime": "dotnet6",
+        "CodeUri": ".",
+        "MemorySize": 512,
+        "Architectures": [
+          "arm64"
+        ],
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "PackageType": "Zip",
+        "Handler": "Benchmark.AwsServerless::Benchmark.AwsServerless.Functions_Arm64_512_Generated::Arm64_512",
+        "Events": {
+          "RootGet": {
+            "Type": "HttpApi",
+            "Properties": {
+              "Path": "/Arm64/512",
               "Method": "GET"
             }
           }
