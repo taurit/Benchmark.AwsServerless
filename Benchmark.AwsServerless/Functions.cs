@@ -39,12 +39,8 @@ public class Functions
     public IHttpResult x86_64_2048() => PrepareResponse();
 
     [LambdaFunction()]
-    [HttpApi(LambdaHttpMethod.Get, "/x86_64/4096")]
-    public IHttpResult x86_64_4096() => PrepareResponse();
-
-    [LambdaFunction()]
-    [HttpApi(LambdaHttpMethod.Get, "/x86_64/8192")]
-    public IHttpResult x86_64_8192() => PrepareResponse();
+    [HttpApi(LambdaHttpMethod.Get, "/x86_64/3008")]
+    public IHttpResult x86_64_3008() => PrepareResponse();
 
     // ARM64:
 
@@ -69,12 +65,8 @@ public class Functions
     public IHttpResult Arm64_2048() => PrepareResponse();
 
     [LambdaFunction()]
-    [HttpApi(LambdaHttpMethod.Get, "/Arm64/4096")]
-    public IHttpResult Arm64_4096() => PrepareResponse();
-
-    [LambdaFunction()]
-    [HttpApi(LambdaHttpMethod.Get, "/Arm64/8192")]
-    public IHttpResult Arm64_8192() => PrepareResponse();
+    [HttpApi(LambdaHttpMethod.Get, "/Arm64/3008")]
+    public IHttpResult Arm64_3008() => PrepareResponse();
 
     private static IHttpResult PrepareResponse()
     {

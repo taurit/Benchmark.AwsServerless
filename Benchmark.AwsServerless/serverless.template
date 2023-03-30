@@ -177,7 +177,7 @@
         }
       }
     },
-    "BenchmarkAwsServerlessFunctionsx86644096Generated": {
+    "BenchmarkAwsServerlessFunctionsx86643008Generated": {
       "Type": "AWS::Serverless::Function",
       "Metadata": {
         "Tool": "Amazon.Lambda.Annotations",
@@ -188,47 +188,18 @@
       "Properties": {
         "Runtime": "dotnet6",
         "CodeUri": ".",
-        "MemorySize": 4096,
+        "MemorySize": 3008,
         "Timeout": 30,
         "Policies": [
           "AWSLambdaBasicExecutionRole"
         ],
         "PackageType": "Zip",
-        "Handler": "Benchmark.AwsServerless::Benchmark.AwsServerless.Functions_x86_64_4096_Generated::x86_64_4096",
+        "Handler": "Benchmark.AwsServerless::Benchmark.AwsServerless.Functions_x86_64_3008_Generated::x86_64_3008",
         "Events": {
           "RootGet": {
             "Type": "HttpApi",
             "Properties": {
-              "Path": "/x86_64/4096",
-              "Method": "GET"
-            }
-          }
-        }
-      }
-    },
-    "BenchmarkAwsServerlessFunctionsx86648192Generated": {
-      "Type": "AWS::Serverless::Function",
-      "Metadata": {
-        "Tool": "Amazon.Lambda.Annotations",
-        "SyncedEvents": [
-          "RootGet"
-        ]
-      },
-      "Properties": {
-        "Runtime": "dotnet6",
-        "CodeUri": ".",
-        "MemorySize": 8192,
-        "Timeout": 30,
-        "Policies": [
-          "AWSLambdaBasicExecutionRole"
-        ],
-        "PackageType": "Zip",
-        "Handler": "Benchmark.AwsServerless::Benchmark.AwsServerless.Functions_x86_64_8192_Generated::x86_64_8192",
-        "Events": {
-          "RootGet": {
-            "Type": "HttpApi",
-            "Properties": {
-              "Path": "/x86_64/8192",
+              "Path": "/x86_64/3008",
               "Method": "GET"
             }
           }
@@ -395,7 +366,7 @@
         }
       }
     },
-    "BenchmarkAwsServerlessFunctionsArm644096Generated": {
+    "BenchmarkAwsServerlessFunctionsArm643008Generated": {
       "Type": "AWS::Serverless::Function",
       "Metadata": {
         "Tool": "Amazon.Lambda.Annotations",
@@ -406,7 +377,7 @@
       "Properties": {
         "Runtime": "dotnet6",
         "CodeUri": ".",
-        "MemorySize": 4096,
+        "MemorySize": 3008,
         "Architectures": [
           "arm64"
         ],
@@ -415,44 +386,12 @@
           "AWSLambdaBasicExecutionRole"
         ],
         "PackageType": "Zip",
-        "Handler": "Benchmark.AwsServerless::Benchmark.AwsServerless.Functions_Arm64_4096_Generated::Arm64_4096",
+        "Handler": "Benchmark.AwsServerless::Benchmark.AwsServerless.Functions_Arm64_3008_Generated::Arm64_3008",
         "Events": {
           "RootGet": {
             "Type": "HttpApi",
             "Properties": {
-              "Path": "/Arm64/4096",
-              "Method": "GET"
-            }
-          }
-        }
-      }
-    },
-    "BenchmarkAwsServerlessFunctionsArm648192Generated": {
-      "Type": "AWS::Serverless::Function",
-      "Metadata": {
-        "Tool": "Amazon.Lambda.Annotations",
-        "SyncedEvents": [
-          "RootGet"
-        ]
-      },
-      "Properties": {
-        "Runtime": "dotnet6",
-        "CodeUri": ".",
-        "MemorySize": 8192,
-        "Architectures": [
-          "arm64"
-        ],
-        "Timeout": 30,
-        "Policies": [
-          "AWSLambdaBasicExecutionRole"
-        ],
-        "PackageType": "Zip",
-        "Handler": "Benchmark.AwsServerless::Benchmark.AwsServerless.Functions_Arm64_8192_Generated::Arm64_8192",
-        "Events": {
-          "RootGet": {
-            "Type": "HttpApi",
-            "Properties": {
-              "Path": "/Arm64/8192",
+              "Path": "/Arm64/3008",
               "Method": "GET"
             }
           }
