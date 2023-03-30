@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics;
-using System.Runtime.CompilerServices;
 
 namespace Benchmark.Client;
 
 internal class Program
 {
-    private const string BaseUrl = "https://3g6rdmxoo8.execute-api.eu-north-1.amazonaws.com/";
+    private const string BaseUrl_x64 = "https://3g6rdmxoo8.execute-api.eu-north-1.amazonaws.com/";
+    private const string BaseUrl_ARM64 = "https://mcrl6qy1q6.execute-api.eu-north-1.amazonaws.com/";
 
     // dependencies
     private static readonly HttpClient HttpClient = new();
@@ -20,9 +20,11 @@ internal class Program
             Console.WriteLine("Starting warm-up routine...");
             for (var i = 0; i < 3; i++)
             {
-                var result = await SendRequest(BaseUrl);
-                await Logger.LogResult(result);
-                await Task.Delay(TimeSpan.FromSeconds(3));
+                var result_x64 = await SendRequest(BaseUrl_x64);
+                await Logger.LogResult(result_x64);
+                var result_arm64 = await SendRequest(BaseUrl_ARM64);
+                await Logger.LogResult(result_arm64);
+                await Task.Delay(TimeSpan.FromSeconds(1));
             }
 
             Console.WriteLine("Completed warm-up routine.");
@@ -30,7 +32,8 @@ internal class Program
             Console.WriteLine("Testing configurations...");
             foreach (var configuration in Configuration.TestedConfigurations)
             {
-                var url = $"{BaseUrl}{configuration.Architecture}/{configuration.MemorySize}";
+                var baseUrl = configuration.Architecture == Architecture.x86_64 ? BaseUrl_x64 : BaseUrl_ARM64;
+                var url = $"{baseUrl}{configuration.Architecture}/{configuration.MemorySize}";
                 var result = await SendRequest(url);
                 await Logger.LogResult(result);
                 await Task.Delay(TimeSpan.FromSeconds(3));
