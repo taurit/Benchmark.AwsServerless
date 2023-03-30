@@ -8,10 +8,12 @@ using System.Runtime.InteropServices;
 
 namespace Benchmark.AwsServerless;
 
-record ResponseModel(Architecture Architecture, string DotNetVersion);
+record ResponseModel(string Architecture, string DotNetVersion, bool IsColdStart);
 
 public class Functions
 {
+    static bool IsFirstCallAfterColdStart = true;
+
     [LambdaFunction()]
     [HttpApi(LambdaHttpMethod.Get, "/")]
     public IHttpResult Default() => PrepareResponse();
@@ -73,9 +75,10 @@ public class Functions
         var architecture = RuntimeInformation.ProcessArchitecture;
         var dotnetVersion = Environment.Version.ToString();
 
-        var responseModel = new ResponseModel(architecture, dotnetVersion);
-        string jsonString = JsonSerializer.Serialize(responseModel);
+        var responseModel = new ResponseModel(architecture.ToString(), dotnetVersion, IsFirstCallAfterColdStart);
+        IsFirstCallAfterColdStart = false;
 
+        string jsonString = JsonSerializer.Serialize(responseModel);
         return HttpResults.Ok(jsonString);
     }
 
